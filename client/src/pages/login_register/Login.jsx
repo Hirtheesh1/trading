@@ -9,13 +9,11 @@ const Login = () => {
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    // Clear previous error messages
     document.getElementById('usernameError').textContent = '';
     document.getElementById('passwordError').textContent = '';
 
     let valid = true;
 
-    // Client-side validation
     if (username.length < 3) {
       document.getElementById('usernameError').textContent = 'Username must be at least 3 characters long.';
       valid = false;
@@ -38,21 +36,19 @@ const Login = () => {
         const data = await response.json();
 
         if (!response.ok) {
-          // Handle server-side validation errors
+          
           if (data.message) {
-            alert(data.message); // Display server error message
+            alert(data.message); 
           } else {
             throw new Error('Login failed');
           }
         } else {
-          // Login successful
+          
           console.log('Login successful:', data);
           alert('Login successful!');
 
-          // Store the token in localStorage or sessionStorage
           localStorage.setItem('token', data.token);
 
-          // Redirect to a protected route (e.g., dashboard)
           <Profile/>
         }
       } catch (error) {
