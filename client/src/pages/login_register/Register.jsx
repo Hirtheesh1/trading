@@ -6,6 +6,7 @@ import Topbar from '../../components/topbar/Topbar';
 const Register = () => {
   const [formData, setFormData] = useState({
     username: '',
+    country:'',
     email: '',
     password: '',
   });
@@ -36,6 +37,7 @@ const Register = () => {
         },
         body: JSON.stringify({
           username: formData.username,
+          country: formData.country,
           email: formData.email,
           password: formData.password,
         }),
@@ -73,6 +75,15 @@ const Register = () => {
           />
           <span className="error" id="usernameError"></span>
         </div>
+        <div className='form-group'>
+        <label for="country">Choose a country:</label>
+        <select name="country" id="country" value={formData.country} onChange={handleChange} required>
+          <option value="India">India</option>
+          <option value="UAE">UAE</option>
+          <option value="USA">USA</option>
+          <option value="Russia">Russia</option>
+        </select>
+        </div>
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -97,6 +108,7 @@ const Register = () => {
           />
           <span className="error" id="passwordError"></span>
         </div>
+        
         <button className="Sign-btn" type="submit">Sign-Up</button>
         <button type="button" className="signup-btn" onClick={() => window.location.href = '/login'}>
           Already have an account?

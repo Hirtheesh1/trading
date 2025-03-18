@@ -1,4 +1,5 @@
 import "./topbar.css"
+import { Link } from 'react-router-dom';
 import { Search, Person, Notifications } from "@mui/icons-material"
 
 export default function Topbar() {
@@ -35,8 +36,12 @@ export default function Topbar() {
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
+        <div className="login/signup">
+        <Link to="/login" className="topbarLink">Login</Link>
+        <Link to="/register" className="topbarLink">/Signup</Link>
+        </div>
         
-        <img src="/assets/profile/img1.jpeg" alt="" className="topbarImg" />
+        <img src="/assets/profile/profile.jpg" alt="" className="topbarImg" />
       </div>
     </div>
 

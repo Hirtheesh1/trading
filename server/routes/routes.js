@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 router.post('/register', async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username,country, email, password } = req.body;
 
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
@@ -16,6 +16,7 @@ router.post('/register', async (req, res) => {
 
     const newUser = new User({
       username,
+      country,
       email,
       password: hashedPassword,
     });
@@ -35,7 +36,7 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({ username }); 
     if (!user) {
       return res.status(400).json({ message: 'Invalid username or password' });
-    }
+    } 
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
